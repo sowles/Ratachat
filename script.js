@@ -9,6 +9,12 @@ document.querySelector(".button[data-action='create']").addEventListener("click"
   changeMainViews("create")
 });
 
-document.querySelector(".button[data-action='goToSplash']").addEventListener("click", () => {
-  changeMainViews("splash")
+document.querySelector(".button[data-action='join']").addEventListener("click", () => {
+  changeMainViews("join")
 });
+
+document.querySelectorAll(".button[data-action='goToSplash']").forEach((el) => {
+  el.addEventListener("click", () => {
+    changeMainViews("splash")
+  });
+})
