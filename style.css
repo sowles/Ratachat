@@ -112,6 +112,10 @@ body {
   border-radius: 8px;
 }
 
+.footerpic {
+  text-align: center;
+    padding: 25px;
+}
 footer {
   padding: 25px;
   text-align: center;
