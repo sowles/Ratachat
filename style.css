@@ -20,7 +20,8 @@
 
 h1 {
   text-align: center;
-  font-size: 80px;
+  font-size: 3.6em;
+  line-height: 1.2;
   color: var(--darkBlue);
 }
 
@@ -31,6 +32,7 @@ body {
 .main {
   max-width: var(--defaultContentWidth);
   margin: 0 auto;
+  padding: 50px 25px;
 }
 
 .main__section--hidden {
@@ -47,14 +49,13 @@ body {
     "getBtn"
     ;
   gap: 25px;
-  padding: 50px 25px;
 }
 
 .main__splash img {
   grid-area: logo;
   margin: 0 auto;
   display: block;
-  max-width: 200px;
+  max-width: 150px;
 }
 
 .main__splash h1 {
@@ -99,7 +100,7 @@ body {
 
 .editText {
   padding: 15px;
-  border: 1px solid var(--darkBlue);
+  border: 2px solid var(--darkBlue);
   background: #fff;
   border-radius: 8px;
 }
@@ -113,6 +114,12 @@ footer {
 }
 
 @media (min-width: 700px) {
+  h1 {
+    font-size: 5em;
+  }
+  .main__splash img {
+    max-width: 200px;
+  }
   .main__splash {
     grid-template-columns: 1fr 1fr;
     grid-template-areas: "logo logo"
