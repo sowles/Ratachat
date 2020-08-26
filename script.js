@@ -8,3 +8,7 @@ function changeMainViews(view) {
 document.querySelector(".button[data-action='create']").addEventListener("click", () => {
   changeMainViews("create")
 });
+
+document.querySelector(".button[data-action='goToSplash']").addEventListener("click", () => {
+  changeMainViews("splash")
+});

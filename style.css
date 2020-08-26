@@ -1,5 +1,5 @@
 :root {
-  --darkBlue: #7895f9;
+  --darkBlue: #7895f9; /* better contrast: 4b74fe */
   --lightBlue: #dde0f4;
   --textColor: rgba(0, 0, 0, 0.8);
   --defaultContentWidth: 700px;
@@ -76,6 +76,13 @@ body {
   border-radius: 8px;
   background: var(--darkBlue);
   font-size: 1.5em;
+}
+
+.button--outline {
+  background: transparent;
+  color: var(--darkBlue);
+  border: 2px solid var(--darkBlue);
+  padding: 8px 13px; /* subtract border width */
 }
 
 .button--big {
