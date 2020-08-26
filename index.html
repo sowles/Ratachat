@@ -1,78 +1,38 @@
 <!DOCTYPE html>
 <html>
-<style>
-  .logo {
-    text-align: center;
-  }
-  h1 {
-    text-align: center;
-    font-size: 80px;
-    color: #7895f9;
-  }
+  <head>
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link href="https://fonts.googleapis.com/css2?family=Patua+One&display=swap" rel="stylesheet">
+    <meta charset="utf-8">
+    <title>Rata.chat</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width = device-width, initial-scale = 1.0">
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js"></script>
+    <script defer src="firebase.js"></script>
+    <script defer src="script.js"></script>
+  </head>
 
-  .page {
-    background-color: #dde0f4
-  }
-
-  .getRoom{
-    width: 250px;
-    height: 50px;
-    margin: auto;
-    overflow: visible;
-    background: #ccd6fd;
-  }
-
-  .getRoomShell {
-    width: 1px;
-    margin: 20px;
-    overflow: visible;
-    transition: all 0.2s ease;
-    justify-content:center;
-    align-items:center;
-  	border-radius: 7px;
-    text-align: center;
-  }
-  .joinRoomShell {
-    width: 1px;
-    margin: 20px;
-    overflow: visible;
-    justify-content:center;
-    align-items:center;
-    text-align: center;
-  }
-
-  .joinRoom {
-    width: 250px;
-    height: 50px;
-    margin: auto;
-    overflow: visible;
-    background: #ccd6fd;
-    transition: all 0.2s ease;
-	  border-radius: 8px;
-  }
-
-  footer {
-    size: 25px;
-    text-align: center;
-    justify-content:center;
-    align-items:center;
-  }
-</style>
-<body class="page">
-
-<h1 class="h1">Rata.chat</h1>
-<div class="logo">
-<img src="unnamed.png">
-</div>
-<div class="getRoomShell">
-<button type="button" class="getRoom">Get a room</button>
-</div>
-<div class="joinRoomShell">
-  <button type="button" class="joinRoom">Join a room</button>
-</div>
-<div class="footer">
-<a href="https://sowlesnet.com">Sowles Network</a>
-<p> © 2019-2020</p>
-</div>
-</body>
+  <body>
+    <main class = "main">
+      <section class = "main__section main__splash">
+        <img src="unnamed.png">
+        <h1 class="h1">Rata.chat</h1>
+        <button type="button" class="button button--big">Join a room</button>
+        <button type="button" class="button button--big" data-action = "create">Get a room</button>
+      </section>
+      <section class = "main__section main__create main__section--hidden">
+        <h1>Create room</h1>
+        <form class = "initForm">
+          <div>
+            <label class = "formLabel" for = "create__enterNickname">Nickname</label>
+            <input type = "text" class = "editText" id = "create__enterNickname" placeholder="  ex: RogerStone420">
+          </div>
+          <button type="button" class="button" id="submitCreateRoom">Create</button>
+        </form>
+      </section>
+    </main>
+    <footer>
+      <span><a href="https://sowlesnet.com">Sowles Network</a> © 2019-2020<span>
+    </footer>
+  </body>
 </html>
