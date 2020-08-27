@@ -4,8 +4,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
   window.addEventListener("load", function() {
     function rand(min, max) {
-      let randomNum = Math.random() * (max - min) + min;
-      return Math.floor(randomNum);
+      let ranNum = Math.random() * (max - min) + min;
+      return Math.floor(ranNum);
     }
     document.getElementById('ranNum').value = rand(10, 20)
 
