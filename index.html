@@ -7,7 +7,9 @@
     <title>Rata.chat</title>
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width = device-width, initial-scale = 1.0">
-    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19/firebase-app.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/7.19/firebase-auth.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/7.19/firebase-firestore.js"></script>
     <script defer src="firebase.js"></script>
     <script defer src="script.js"></script>
   </head>
@@ -27,7 +29,7 @@
             <label class = "formLabel" for = "create__enterNickname">Nickname</label>
             <input type = "text" class = "editText" id = "create__enterNickname" placeholder="ex: RogerStone420">
           </div>
-          <button type="button" class="button" data-action="submitCreateRoom" formaction="https://rata.chat/roomcodepage">Create</button>
+          <button type="button" class="button" data-action="submitCreateRoom">Create</button>
           <button type="button" class="button button--outline" data-action="goToSplash">Cancel</button>
         </form>
       </section>
@@ -40,7 +42,7 @@
           </div>
           <div>
             <label class="formLabel" for="join__enterCode">Room code</label>
-            <input type="text" class="editText" id="join__enterCode" maxlength="6" minlength="6">
+            <input type="text" class="editText" id="join__enterCode" maxlength="3" minlength="3">
           </div>
           <button type="button" class="button" data-action="submitJoinRoom">Join</button>
           <button type="button" class="button button--outline" data-action="goToSplash">Cancel</button>
