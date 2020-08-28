@@ -83,16 +83,14 @@ async function joinRoom() {
   catch(error) {
     alert(`Fuck! Error: ${error}`);
   }
-  if (!room.empty) {
-    window.location =`chat.html?room=${roomCode}&nickname=${nickname}`;
-  }
-  else {
+  if (room.empty) {
     alert("You moron, that room doesn't exist");
-  if (!nickname.empty) {
-    window.location =`chat.html?room=${roomCode}&nickname=${nickname}`;
+  }
+  else if (!nickname) {
+    alert("Enter your name man");
   }
   else {
-    alert("Enter your name man");
+    window.location =`chat.html?room=${roomCode}&nickname=${nickname}`;
   }
 
 }
