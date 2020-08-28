@@ -88,6 +88,11 @@ async function joinRoom() {
   }
   else {
     alert("You moron, that room doesn't exist");
+  if (!nickname.empty) {
+    window.location =`chat.html?room=${roomCode}&nickname=${nickname}`;
+  }
+  else {
+    alert("Enter your name man");
   }
 
 }
