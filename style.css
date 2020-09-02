@@ -138,6 +138,39 @@ footer {
   grid-area: text;
 }
 
+.bubbleWrap {
+	display: block;
+}
+
+.bubbleWrap--sender {
+	display: inline-grid;
+	grid-template-columns: 1fr;
+	grid-gap: 15px;
+	align-items: flex-end;
+	justify-items: end;
+	text-align: right;
+}
+
+
+
+.bubble {
+	max-width: 90%;
+	display: inline-block;
+	border-radius: 5px;
+	padding: 12px;
+}
+
+.bubble--sender, .bubble--sender * {
+	text-align: right;
+	background-color: #003894;
+	color: rgba(255, 255, 255, 0.9);
+}
+
+.bubble--recipient {
+	text-align: left;
+	background-color: #f8f8f8;
+}
+
 @media (min-width: 700px) {
   h1 {
     font-size: 5em;
