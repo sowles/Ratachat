@@ -164,11 +164,13 @@ footer {
 	text-align: left;
 	background-color: #7895f9;
 	color: rgba(255, 255, 255, 0.9);
+  border-radius: 5px;
 }
 
 .bubble--recipient {
 	text-align: right;
 	background-color: #c8c4d0;
+  border-radius: 5px;
 }
 
 @media (min-width: 700px) {
