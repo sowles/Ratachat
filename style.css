@@ -112,16 +112,30 @@ body {
   border-radius: 8px;
 }
 
-.footerpic {
-  text-align: center;
-    padding: 25px;
-}
 footer {
   padding: 25px;
   text-align: center;
   border-top: 1px solid var(--darkBlue);
   margin: 0 auto;
   max-width: var(--defaultContentWidth);
+  display: grid;
+  grid-template-columns: 1fr auto auto 1fr;
+  grid-template-areas:
+    ". logo logo ."
+    ". text text .";
+  gap: 25px;
+  align-items: center;
+}
+
+.footer__logo {
+  display: block;
+  margin: 0 auto;
+  max-width: 50px;
+  grid-area: logo;
+}
+
+.footer__text {
+  grid-area: text;
 }
 
 @media (min-width: 700px) {
@@ -137,5 +151,8 @@ footer {
       "title title"
       "tagline tagline"
       "joinBtn getBtn";
+  }
+  footer {
+    grid-template-areas: ". logo text .";
   }
 }

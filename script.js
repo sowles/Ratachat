@@ -60,10 +60,13 @@ async function createRoom() {
   const nickname = document.querySelector("#create__enterNickname").value;
   let roomCode = randomCode(100, 999);
   try {
+    await firebaseDB.collection("rooms").doc(roomCode).set({
+      created: true
+    });
     await firebaseDB.collection("rooms").doc(roomCode).collection('messages').doc().set({
       timestamp: new Date(),
       nickname: nickname,
-      content: "Room code: " + roomCode
+      content: "Room code: " + roomCode,
     });
   }
   catch(error) {
@@ -78,12 +81,12 @@ async function joinRoom() {
   const roomCode = document.querySelector("#join__enterCode").value;
   let room;
   try {
-    room = await firebaseDB.collection("rooms").doc(roomCode).get()
+    room = await firebaseDB.collection("rooms").doc(roomCode).get();
   }
   catch(error) {
     alert(`Fuck! Error: ${error}`);
   }
-  if (room.empty) {
+  if (!room.exists) {
     alert("You moron, that room doesn't exist");
   }
   else if (!nickname) {

@@ -25,15 +25,16 @@ async function provisionChat() {
   // check for room existence
   let room;
   try {
-    room = await firebaseDB.collection("rooms").doc(roomCode).get()
+    room = await firebaseDB.collection("rooms").doc(roomCode).get();
+
   }
   catch(error) {
     alert(`Fuck! Error: ${error}`);
   }
-  if (room.empty) {
+  
+  if (!room.exists) {
     window.location = "index.html";
   }
-
   // get room chats/etc
 }
 
