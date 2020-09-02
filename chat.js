@@ -31,7 +31,7 @@ async function provisionChat() {
   catch(error) {
     alert(`Fuck! Error: ${error}`);
   }
-  
+
   if (!room.exists) {
     window.location = "index.html";
   }
@@ -40,7 +40,7 @@ async function provisionChat() {
 
 
 // Test
-alert(roomCode);
+//alert(roomCode);
 
 
 // Get room chats-stuffs, etc
