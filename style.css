@@ -161,13 +161,13 @@ footer {
 }
 
 .bubble--sender, .bubble--sender * {
-	text-align: right;
+	text-align: left;
 	background-color: #7895f9;
 	color: rgba(255, 255, 255, 0.9);
 }
 
 .bubble--recipient {
-	text-align: left;
+	text-align: right;
 	background-color: #c8c4d0;
 }
 
