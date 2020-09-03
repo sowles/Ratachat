@@ -4,6 +4,7 @@
   --textColor: rgba(0, 0, 0, 0.8);
   --defaultContentWidth: 700px;
   --headerFont: "Patua One", serif;
+  --chatRecievedColor: #c8c4d0;
 }
 
 * {
@@ -169,7 +170,7 @@ footer {
 
 .bubble--recipient {
 	text-align: left;
-	background-color: #c8c4d0;
+	background-color: var(--chatRecievedColor);
   border-radius: 5px;
 }
 
