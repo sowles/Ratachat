@@ -4,7 +4,8 @@
   --textColor: rgba(0, 0, 0, 0.8);
   --defaultContentWidth: 700px;
   --headerFont: "Patua One", serif;
-  --chatRecievedColor: #c8c4d0;
+  --darkGrey: #c8c4d0;
+  --borderRadius: 8px;
 }
 
 * {
@@ -74,7 +75,7 @@ body {
 .button {
   padding: 10px 15px;
   text-align: center;
-  border-radius: 8px;
+  border-radius: var(--borderRadius);
   background: var(--darkBlue);
   font-size: 1.5em;
 }
@@ -110,7 +111,47 @@ body {
   padding: 15px;
   border: 2px solid var(--darkBlue);
   background: #fff;
-  border-radius: 8px;
+  border-radius: var(--borderRadius);
+}
+
+/* chat page */
+
+.main__chat {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 25px;
+}
+
+.chatLine {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.chatLine--you {
+	justify-items: end;
+}
+
+.chatLine--other {
+	justify-items: start;
+}
+
+.chatBubble {
+	max-width: 95%;
+	display: inline-block;
+	border-radius: calc(2 * var(--borderRadius));
+	padding: 8px 15px;
+  word-wrap: break-word;
+}
+
+.chatLine--you > .chatBubble {
+	background-color: var(--darkBlue);
+	color: rgba(255, 255, 255, 0.9); /* TODO: refactor to variable */
+  border-bottom-right-radius: 0;
+}
+
+.chatLine--other > .chatBubble {
+	background-color: var(--darkGrey);
+  border-bottom-left-radius: 0;
 }
 
 footer {
@@ -139,40 +180,7 @@ footer {
   grid-area: text;
 }
 
-.bubbleWrap {
-	display: block;
-}
 
-.bubbleWrap--sender {
-	display: inline-grid;
-	grid-template-columns: 1fr;
-	grid-gap: 15px;
-	align-items: flex-end;
-	justify-items: end;
-	text-align: right;
-}
-
-
-
-.bubble {
-	max-width: 40%;
-	display: inline-block;
-	border-radius: 5px;
-	padding: 12px;
-}
-
-.bubble--sender, .bubble--sender * {
-	text-align:  right;
-	background-color: #7895f9;
-	color: rgba(255, 255, 255, 0.9);
-  border-radius: 5px;
-}
-
-.bubble--recipient {
-	text-align: left;
-	background-color: var(--chatRecievedColor);
-  border-radius: 5px;
-}
 
 @media (min-width: 700px) {
   h1 {
@@ -187,6 +195,9 @@ footer {
       "title title"
       "tagline tagline"
       "joinBtn getBtn";
+  }
+  .chatBubble {
+    max-width: 70%;
   }
   footer {
     grid-template-areas: ". logo text .";
