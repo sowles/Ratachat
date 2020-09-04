@@ -187,7 +187,7 @@ footer {
     font-size: 5em;
   }
   .main__splash img {
-    max-width: 200px;
+    max-width: 600px;
   }
   .main__splash {
     grid-template-columns: 1fr 1fr;
