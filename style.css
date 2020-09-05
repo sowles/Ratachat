@@ -141,6 +141,8 @@ body {
 	border-radius: calc(2 * var(--borderRadius));
 	padding: 8px 15px;
   word-wrap: break-word;
+  text-align: left;
+
 }
 
 .chatLine--you > .chatBubble {
