@@ -37,6 +37,10 @@ body {
   padding: 50px 25px;
 }
 
+.main--relative {
+  position: relative;
+}
+
 .main__section--hidden {
   display: none !important;
 }
@@ -45,7 +49,6 @@ body {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-areas: "logo"
-    "title"
     "tagline"
     "joinBtn"
     "getBtn"
@@ -53,15 +56,11 @@ body {
   gap: 25px;
 }
 
-.main__splash img {
+.main__splash .logo {
   grid-area: logo;
   margin: 0 auto;
   display: block;
-  max-width: 150px;
-}
-
-.main__splash h1 {
-  grid-area: title;
+  max-width: 100%;
 }
 
 .main__splash .button--joinRoom {
@@ -156,6 +155,27 @@ body {
   border-bottom-left-radius: 0;
 }
 
+#chatForm {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0;
+  border-radius: calc(2 * var(--borderRadius));
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+#chatInput {
+  padding: 25px;
+  background-color: var(--darkBlue);
+  color: rgba(255, 255, 255, 0.9); /* TODO: refactor to variable */
+}
+
+#chatInput::placeholder {
+  color: rgba(255, 255, 255, 0.7); /* TODO: refactor to variable */
+}
+
 footer {
   padding: 25px;
   text-align: center;
@@ -194,7 +214,6 @@ footer {
   .main__splash {
     grid-template-columns: 1fr 1fr;
     grid-template-areas: "logo logo"
-      "title title"
       "tagline tagline"
       "joinBtn getBtn";
   }

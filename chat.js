@@ -1,5 +1,6 @@
 let firebaseDB;
 const urlParams = new URLSearchParams(window.location.search);
+const chatContainer = document.querySelector(".main__section.main__chat");
 
 // return user if URL not right
 if (!(urlParams.has("nickname") && urlParams.has("room"))) {
@@ -35,7 +36,32 @@ async function provisionChat() {
   if (!room.exists) {
     window.location = "index.html";
   }
-  // get room chats/etc
+  // get all messages in room
+  let messages;
+  try {
+    messages = await firebaseDB.collection("rooms").doc(roomCode).collection("messages").orderBy("timestamp", "asc").get();
+    messages.forEach((message) => {
+      // construct message markup!!!
+      const chatLineType = (nickname == message.data()["nickname"]) ? "you" : "other";
+
+      const chatLine = document.createElement("section");
+      chatLine.classList.add("chatLine", "chatLine--" + chatLineType);
+      chatContainer.appendChild(chatLine);
+
+      const chatBubble = document.createElement("span");
+      chatBubble.classList.add("chatBubble");
+      chatBubble.textContent = message.data()["content"];
+      chatLine.appendChild(chatBubble);
+
+      const chatNickname = document.createElement("span");
+      chatNickname.textContent = message.data()["nickname"];
+      chatLine.appendChild(chatNickname);
+    });
+  }
+  catch(error) {
+    alert(`Fuck! Error: ${error}`);
+  }
+
 }
 
 
