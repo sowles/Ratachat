@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang = "en">
   <head>
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link href="https://fonts.googleapis.com/css2?family=Patua+One&display=swap" rel="stylesheet">
     <meta charset="utf-8">
     <title>Rata.chat</title>
@@ -15,32 +15,13 @@
   </head>
 
   <body>
-    <main class = "main">
-      <script>
-      document.addEventListener("DOMContentLoaded", function() {
-  let options = [
-    "random", "unique", "interesting", "funny", "charming", "about yourself", "hip"
-  ]
-
-  const randomInt = getRandomInt(options.length);
-
-  const pmContent = document.getElementById("pmContent");
-  pmContent.placeholder = "Say something " + options[randomInt] + "...";
-  console.log(pmContent)
-});
-
-</script>
-
-“A good boxer,” recalled Dennis P. Williams, Wilmington’s former mayor. “He could punch you so fast you didn’t even realize it.”
-
-Biden, at times, has stated he was the only white lifeguard at the pool — but his contemporaries remember other whites working there. Nonetheless, Biden was mocked when he started working at the pool. The residents were unsure why he took the job, because white people were moving out of the neighborhood, not coming in.
-
-Biden was pranked and mocked because he was quick to use his whistle, neighborhood residents recalled in interviews. But there was a special tension between him and Corn Pop, said Maurice Pritchett, a school principal who was on the lifeguard shift with Biden.
-
-
-          </span>
-        </section>
+    <main class = "main main--relative">
+      <section class = "main__section main__chat">
+        <!-- Populated by JS -->
       </section>
+      <form id="chatForm">
+        <input type = "text" id = "chatInput" placeholder = "Say something hip...">
+      </form>
     </main>
     <footer>
       <img src="SFlogo.png" width="40px" class="footer__logo">
