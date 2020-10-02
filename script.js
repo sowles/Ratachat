@@ -75,20 +75,6 @@ async function createRoom() {
   // move them to chat page, give chat page nickname
   window.location =`chat.html?room=${roomCode}&nickname=${nickname}`;
 }
-//leaving room
-$(function () {
-        $('input[type="checkbox"]').click(function () {
-            window.onbeforeunload = function () {
-              firebasedDB.collection("rooms").doc("roomCode").delete().then(function() {
-                  console.log("Document successfully deleted!");
-              }).catch(function(error) {
-                  console.error("Error removing document: ", error);
-              });
-             };
-        });
-    });
-
-
 
 async function joinRoom() {
   const nickname = document.querySelector("#join__enterNickname").value;

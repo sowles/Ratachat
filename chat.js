@@ -71,3 +71,12 @@ async function provisionChat() {
 
 // Get room chats-stuffs, etc
 // TODO
+
+// delete when user leaves
+window.onbeforeunload = function () {
+  firebasedDB.collection("rooms").doc(roomCode).delete().then(function() {
+      console.log("Document successfully deleted!");
+  }).catch(function(error) {
+      console.error("Error removing document: ", error);
+  });
+}
