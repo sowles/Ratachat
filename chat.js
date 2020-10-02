@@ -73,7 +73,7 @@ async function provisionChat() {
 // TODO
 
 // delete when user leaves
-window.onbeforeunload = function () {
+window.onbeforeunload = function (deleteChat) {
   firebasedDB.collection("rooms").doc(roomCode).delete().then(function() {
       console.log("Document successfully deleted!");
   }).catch(function(error) {
