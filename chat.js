@@ -64,7 +64,17 @@ async function provisionChat() {
 
 }
 
+async function deleteChat() {
+  try {
+    const deleteChat = await firebaseDB.collection("rooms").doc(roomCode).delete();
+  }
+  catch(error) {
+    console.error("Fuck! Error: ", error);
+  }
+  window.location = "index.html";
+}
 
+document.querySelector(".button[data-action='deleteChat']").addEventListener("click", deleteChat);
 // Test
 //alert(roomCode);
 
@@ -73,10 +83,3 @@ async function provisionChat() {
 // TODO
 
 // delete when user leaves
-window.onbeforeunload = function (deleteChat) {
-  firebasedDB.collection("rooms").doc(roomCode).delete().then(function() {
-      console.log("Document successfully deleted!");
-  }).catch(function(error) {
-      console.error("Error removing document: ", error);
-  });
-}
