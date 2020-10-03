@@ -96,4 +96,7 @@ async function joinRoom() {
     window.location =`chat.html?room=${roomCode}&nickname=${nickname}`;
   }
 
+  
+
+  });
 }

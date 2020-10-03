@@ -121,6 +121,13 @@ body {
   row-gap: 25px;
 }
 
+.pmContent {
+	padding: 25px;
+	border: 0;
+	border-radius: 0;
+  placeholder: "hello";
+}
+
 .chatLine {
   display: grid;
   grid-template-columns: 1fr;
