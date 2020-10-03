@@ -96,6 +96,19 @@ async function sendMessage(event) {
 document.querySelector(".button[data-action='deleteChat']").addEventListener("click", deleteChat);
 document.querySelector("#chatForm").addEventListener("submit", sendMessage);
 
+//Witty placehoders
+function getRandomInt(max) {
+return Math.floor(Math.random() * Math.floor(max));
+}
 
+document.addEventListener("DOMContentLoaded", function() {
+let options = [
+  "random", "unique", "interesting", "funny", "charming", "about yourself", "hip"
+]
+
+const randomInt = getRandomInt(options.length);
+//
+// const pmContent = document.getElementById("pmContent");
+// pmContent.placeholder = "Say something " + options[randomInt] + "...";
 // Get room chats-stuffs, etc
 // TODO
