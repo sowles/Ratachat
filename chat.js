@@ -74,12 +74,28 @@ async function deleteChat() {
   window.location = "index.html";
 }
 
+async function sendMessage(event) {
+  event.preventDefault();
+  const message = document.querySelector("#chatInput").value;
+  if (message == "") {
+    return;
+  }
+  try {
+    await firebaseDB.collection("rooms").doc(roomCode).collection('messages').doc().set({
+      timestamp: new Date(),
+      nickname: nickname,
+      content: message
+    });
+    document.querySelector("#chatInput").value = "";
+  }
+  catch(error) {
+    console.error("Fuck! Error: ", error);
+  }
+}
+
 document.querySelector(".button[data-action='deleteChat']").addEventListener("click", deleteChat);
-// Test
-//alert(roomCode);
+document.querySelector("#chatForm").addEventListener("submit", sendMessage);
 
 
 // Get room chats-stuffs, etc
 // TODO
-
-// delete when user leaves

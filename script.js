@@ -66,7 +66,7 @@ async function createRoom() {
     await firebaseDB.collection("rooms").doc(roomCode).collection('messages').doc().set({
       timestamp: new Date(),
       nickname: nickname,
-      content: "Room code: " + roomCode,
+      content: "Room code: " + roomCode
     });
   }
   catch(error) {
