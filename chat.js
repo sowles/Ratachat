@@ -37,6 +37,7 @@ async function provisionChat() {
     window.location = "index.html";
   }
   // get all messages in room
+  randomWittyPlaceholder();
   let messages;
   try {
     messages = await firebaseDB.collection("rooms").doc(roomCode).collection("messages").orderBy("timestamp", "asc").get();
@@ -96,19 +97,17 @@ async function sendMessage(event) {
 document.querySelector(".button[data-action='deleteChat']").addEventListener("click", deleteChat);
 document.querySelector("#chatForm").addEventListener("submit", sendMessage);
 
-//Witty placehoders
-function getRandomInt(max) {
-return Math.floor(Math.random() * Math.floor(max));
+function randomWittyPlaceholder() {
+  let options = [
+    "random", "unique", "interesting", "funny", "charming", "about yourself", "hip"
+  ]
+
+  const randomInt = Math.floor(Math.random() * Math.floor(options.length));;
+  const chatInput = document.querySelector("#chatInput");
+  chatInput.placeholder = "Say something " + options[randomInt] + "...";
+
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-let options = [
-  "random", "unique", "interesting", "funny", "charming", "about yourself", "hip"
-]
 
-const randomInt = getRandomInt(options.length);
-//
-// const pmContent = document.getElementById("pmContent");
-// pmContent.placeholder = "Say something " + options[randomInt] + "...";
 // Get room chats-stuffs, etc
 // TODO
