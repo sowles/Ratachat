@@ -27,7 +27,6 @@ async function provisionChat() {
   let room;
   try {
     room = await firebaseDB.collection("rooms").doc(roomCode).get();
-
   }
   catch(error) {
     alert(`Fuck! Error: ${error}`);
@@ -39,30 +38,30 @@ async function provisionChat() {
   // get all messages in room
   randomWittyPlaceholder();
   let messages;
-  try {
-    messages = await firebaseDB.collection("rooms").doc(roomCode).collection("messages").orderBy("timestamp", "asc").get();
-    messages.forEach((message) => {
-      // construct message markup!!!
-      const chatLineType = (nickname == message.data()["nickname"]) ? "you" : "other";
+  firebaseDB.collection("rooms").doc(roomCode).collection("messages").orderBy("timestamp", "asc")
+    .onSnapshot((messages) => {
+      while (chatContainer.firstChild) {
+        chatContainer.removeChild(chatContainer.firstChild);
+      }
+      messages.forEach((message) => {
+        // construct message markup!!!
+        const chatLineType = (nickname == message.data()["nickname"]) ? "you" : "other";
 
-      const chatLine = document.createElement("section");
-      chatLine.classList.add("chatLine", "chatLine--" + chatLineType);
-      chatContainer.appendChild(chatLine);
+        const chatLine = document.createElement("section");
+        chatLine.classList.add("chatLine", "chatLine--" + chatLineType);
+        chatContainer.appendChild(chatLine);
 
-      const chatBubble = document.createElement("span");
-      chatBubble.classList.add("chatBubble");
-      chatBubble.textContent = message.data()["content"];
-      chatLine.appendChild(chatBubble);
+        const chatBubble = document.createElement("span");
+        chatBubble.classList.add("chatBubble");
+        chatBubble.textContent = message.data()["content"];
+        chatLine.appendChild(chatBubble);
 
-      const chatNickname = document.createElement("span");
-      chatNickname.textContent = message.data()["nickname"];
-      chatLine.appendChild(chatNickname);
+        const chatNickname = document.createElement("span");
+        chatNickname.textContent = message.data()["nickname"];
+        chatLine.appendChild(chatNickname);
+      });
+      document.documentElement.scrollTop = document.documentElement.scrollHeight;
     });
-  }
-  catch(error) {
-    alert(`Fuck! Error: ${error}`);
-  }
-
 }
 
 async function deleteChat() {
@@ -88,6 +87,7 @@ async function sendMessage(event) {
       content: message
     });
     document.querySelector("#chatInput").value = "";
+    randomWittyPlaceholder();
   }
   catch(error) {
     console.error("Fuck! Error: ", error);
@@ -107,7 +107,6 @@ function randomWittyPlaceholder() {
   chatInput.placeholder = "Say something " + options[randomInt] + "...";
 
 }
-
 
 // Get room chats-stuffs, etc
 // TODO
