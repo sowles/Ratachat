@@ -80,13 +80,13 @@ async function sendMessage(event) {
   if (message == "") {
     return;
   }
+  document.querySelector("#chatInput").value = "";
   try {
     await firebaseDB.collection("rooms").doc(roomCode).collection('messages').doc().set({
       timestamp: new Date(),
       nickname: nickname,
       content: message
     });
-    document.querySelector("#chatInput").value = "";
     randomWittyPlaceholder();
   }
   catch(error) {
