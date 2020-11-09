@@ -38,8 +38,9 @@ async function provisionChat() {
   // get all messages in room
   randomWittyPlaceholder();
   let messages;
-  firebaseDB.collection("rooms").doc(roomCode).collection("messages").orderBy("timestamp", "asc")
+  firebaseDB.collection("messages").where("room", "==" roomCode).orderBy("timestamp", "asc")
     .onSnapshot((messages) => {
+      // this runs every time db is updated
       while (chatContainer.firstChild) {
         chatContainer.removeChild(chatContainer.firstChild);
       }
@@ -66,7 +67,8 @@ async function provisionChat() {
 
 async function deleteChat() {
   try {
-    const deleteChat = await firebaseDB.collection("rooms").doc(roomCode).delete();
+    await firebaseDB.collection("rooms").doc(roomCode).delete();
+    await fireBaseDB.collection("messages").where("room", "==", roomCode).delete();
   }
   catch(error) {
     console.error("Fuck! Error: ", error);
@@ -82,10 +84,11 @@ async function sendMessage(event) {
   }
   document.querySelector("#chatInput").value = "";
   try {
-    await firebaseDB.collection("rooms").doc(roomCode).collection('messages').doc().set({
+    await firebaseDB.collection("messages").doc().set({
       timestamp: new Date(),
       nickname: nickname,
-      content: message
+      content: message,
+      room: (string)roomCode
     });
     randomWittyPlaceholder();
   }

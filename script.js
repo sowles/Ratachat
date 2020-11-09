@@ -58,15 +58,16 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 async function createRoom() {
   const nickname = document.querySelector("#create__enterNickname").value;
-  let roomCode = randomCode(100, 999);
+  let roomCode = randomCode(1000, 9909);
   try {
     await firebaseDB.collection("rooms").doc(roomCode).set({
       created: true
     });
-    await firebaseDB.collection("rooms").doc(roomCode).collection('messages').doc().set({
+    await firebaseDB.collection("messages").doc().set({
       timestamp: new Date(),
       nickname: nickname,
-      content: "Room code: " + roomCode
+      content: "Room code: " + roomCode,
+      room: roomCode
     });
   }
   catch(error) {
@@ -98,5 +99,5 @@ async function joinRoom() {
 
 
 
-  
+
 }
