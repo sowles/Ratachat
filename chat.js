@@ -66,27 +66,25 @@ async function provisionChat() {
 }
 
 async function deleteChat() {
-  // try {
-  //   await firebaseDB.collection("rooms").doc(roomCode).delete();
-  // }
-  // catch(error) {
-  //   console.error("Fuck! Error: ", error);
-  // }
   try {
-    let batch = firebaseDB.batch();
-    firebaseDB.collection("messages").where("room", "==", String(roomCode))
-    .onSnapshot((messages) => {
-      messages.forEach((message) => {
-        batch.delete(message);
-        console.log(message);
-      });
-    });
-    await batch.commit();
+    await firebaseDB.collection("rooms").doc(roomCode).delete();
   }
   catch(error) {
     console.error("Fuck! Error: ", error);
   }
-  // window.location = "index.html";
+  try {
+    var batch = firebaseDB.batch();
+    const messages = await firebaseDB.collection("messages").where("room", "==", String(roomCode)).get();
+    messages.forEach((doc) => {
+      batch.delete(doc.ref);
+    });
+    await batch.commit();
+  }
+
+  catch(error) {
+    console.error(`Fuck: ${error}`);
+  }
+  window.location = "index.html";
 }
 
 async function sendMessage(event) {
@@ -96,6 +94,7 @@ async function sendMessage(event) {
     return;
   }
   document.querySelector("#chatInput").value = "";
+  randomWittyPlaceholder();
   try {
     await firebaseDB.collection("messages").doc().set({
       timestamp: new Date(),
@@ -103,7 +102,6 @@ async function sendMessage(event) {
       content: message,
       room: String(roomCode)
     });
-    randomWittyPlaceholder();
   }
   catch(error) {
     console.error("Fuck! Error: ", error);
