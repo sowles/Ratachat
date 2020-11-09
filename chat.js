@@ -68,17 +68,17 @@ async function provisionChat() {
 async function deleteChat() {
   try {
     await firebaseDB.collection("rooms").doc(roomCode).delete();
-    const snapshot = await firebase.firestore()
-        .collection("rooms")
-        .where("room", "==", String(roomCode))
-        .get();
-
-    await Promise.all(snapshot.docs.map(doc => doc.ref.delete()));
-  }
   }
   catch(error) {
     console.error("Fuck! Error: ", error);
   }
+  const snapshot = await firebase.firestore()
+      .collection("rooms")
+      .where("room", "==", String(roomCode))
+      .get();
+
+  await Promise.all(snapshot.docs.map(doc => doc.ref.delete()));
+
   window.location = "index.html";
 }
 
