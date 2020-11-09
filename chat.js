@@ -74,7 +74,7 @@ async function deleteChat() {
   }
   try {
     let batch = db.batch();
-    firebaseDB.collection("messages").where("room", "==", roomCode)
+    firebaseDB.collection("messages").where("room", "==", String(roomCode))
     .onSnapshot((messages) => {
       messages.forEach((message) => {
         batch.delete(message);
