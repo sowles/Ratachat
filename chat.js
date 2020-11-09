@@ -73,7 +73,7 @@ async function deleteChat() {
   //   console.error("Fuck! Error: ", error);
   // }
   try {
-    let batch = db.batch();
+    let batch = firebaseDB.batch();
     firebaseDB.collection("messages").where("room", "==", String(roomCode))
     .onSnapshot((messages) => {
       messages.forEach((message) => {
