@@ -88,7 +88,7 @@ async function sendMessage(event) {
       timestamp: new Date(),
       nickname: nickname,
       content: message,
-      room: (string)roomCode
+      room: String(roomCode)
     });
     randomWittyPlaceholder();
   }
