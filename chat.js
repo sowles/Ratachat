@@ -38,7 +38,7 @@ async function provisionChat() {
   // get all messages in room
   randomWittyPlaceholder();
   let messages;
-  firebaseDB.collection("messages").where("room", "==" roomCode).orderBy("timestamp", "asc")
+  firebaseDB.collection("messages").where("room", "==", roomCode).orderBy("timestamp", "asc")
     .onSnapshot((messages) => {
       // this runs every time db is updated
       while (chatContainer.firstChild) {
