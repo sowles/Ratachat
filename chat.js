@@ -77,7 +77,7 @@ async function deleteChat() {
     .onSnapshot((messages) => {
       messages.forEach((message) => {
         batch.delete(message);
-      }
+      });
     });
     await batch.commit();
   }
