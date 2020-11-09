@@ -17,23 +17,6 @@ document.querySelectorAll(".button[data-action='join']").forEach((el) => {
   });
 });
 
-document.querySelectorAll(".button[data-action='goToSplash']").forEach((el) => {
-  el.addEventListener("click", () => {
-    changeMainViews("splash");
-  });
-});
-
-document.querySelectorAll(".button[data-action='submitCreateRoom']").forEach((el) => {
-  el.addEventListener("click", () => {
-    createRoom();
-  });
-});
-
-document.querySelectorAll(".button[data-action='submitJoinRoom']").forEach((el) => {
-  el.addEventListener("click", () => {
-    joinRoom();
-  });
-});
 
 function randomCode(min, max) {
   let ranNum = Math.random() * (max - min) + min;
@@ -56,7 +39,8 @@ firebase.auth().onAuthStateChanged(function(user) {
   }
 });
 
-async function createRoom() {
+async function createRoom(event) {
+  event.preventDefault();
   const nickname = document.querySelector("#create__enterNickname").value;
   let roomCode = randomCode(1000, 9909);
   try {
@@ -77,7 +61,8 @@ async function createRoom() {
   window.location =`chat.html?room=${roomCode}&nickname=${nickname}`;
 }
 
-async function joinRoom() {
+async function joinRoom(event) {
+  event.preventDefault();
   const nickname = document.querySelector("#join__enterNickname").value;
   const roomCode = document.querySelector("#join__enterCode").value;
   let room;
@@ -96,8 +81,5 @@ async function joinRoom() {
   else {
     window.location =`chat.html?room=${roomCode}&nickname=${nickname}`;
   }
-
-
-
 
 }
