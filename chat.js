@@ -66,18 +66,19 @@ async function provisionChat() {
 }
 
 async function deleteChat() {
-  try {
-    await firebaseDB.collection("rooms").doc(roomCode).delete();
-  }
-  catch(error) {
-    console.error("Fuck! Error: ", error);
-  }
+  // try {
+  //   await firebaseDB.collection("rooms").doc(roomCode).delete();
+  // }
+  // catch(error) {
+  //   console.error("Fuck! Error: ", error);
+  // }
   try {
     let batch = db.batch();
     firebaseDB.collection("messages").where("room", "==", String(roomCode))
     .onSnapshot((messages) => {
       messages.forEach((message) => {
         batch.delete(message);
+        console.log(message);
       });
     });
     await batch.commit();
@@ -85,7 +86,7 @@ async function deleteChat() {
   catch(error) {
     console.error("Fuck! Error: ", error);
   }
-  window.location = "index.html";
+  // window.location = "index.html";
 }
 
 async function sendMessage(event) {
