@@ -72,13 +72,18 @@ async function deleteChat() {
   catch(error) {
     console.error("Fuck! Error: ", error);
   }
-  const snapshot = await firebase.firestore()
-      .collection("rooms")
-      .where("room", "==", String(roomCode))
-      .get();
-
-  await Promise.all(snapshot.docs.map(doc => doc.ref.delete()));
-
+  try {
+    firebaseDB.collection("messages").where("room", "==", roomCode)
+    .onSnapshot((messages) => {
+      messages.forEach((message) => {
+        batch.delete(message);
+      }
+    });
+    await batch.commit();
+  }
+  catch(error) {
+    console.error("Fuck! Error: ", error);
+  }
   window.location = "index.html";
 }
 
