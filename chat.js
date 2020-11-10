@@ -39,6 +39,7 @@ async function provisionChat() {
   // get all messages in room
   randomWittyPlaceholder();
   let messages;
+  let isFirstSnapshot = true;
   firebaseDB.collection("messages").where("room", "==", roomCode).orderBy("timestamp", "asc")
     .onSnapshot((messages) => {
       // this runs every time db is updated
@@ -63,13 +64,20 @@ async function provisionChat() {
         chatLine.appendChild(chatNickname);
       });
       document.documentElement.scrollTop = document.documentElement.scrollHeight;
-      loaderWrap.classList.add("hidden"); /* so inefficient (runs every time db updates!) and i hate myself for it */
+
+      // remove spinner
+      if (isFirstSnapshot) {
+        loaderWrap.classList.add("hidden");
+        isFirstSnapshot = false;
+      }
     })
-    // after first load, remove spinner
 
 }
 
 async function deleteChat() {
+  // add spinner
+  loaderWrap.classList.remove("hidden");
+
   try {
     await firebaseDB.collection("rooms").doc(roomCode).delete();
   }
@@ -88,7 +96,10 @@ async function deleteChat() {
   catch(error) {
     console.error(`Fuck: ${error}`);
   }
-  window.location = "index.html";
+
+  finally {
+    window.location = "index.html";
+  }
 }
 
 async function sendMessage(event) {
