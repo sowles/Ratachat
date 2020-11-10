@@ -53,7 +53,7 @@ async function createRoom(event) {
     await firebaseDB.collection("rooms").doc(roomCode).set({
       created: true
     });
-    await firebaseDB.collection("messages").doc().set({
+    await firebaseDB.collection("messages").add({
       timestamp: new Date(),
       nickname: nickname,
       content: "Room code: " + roomCode,
