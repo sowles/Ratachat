@@ -131,30 +131,37 @@ body {
   left: 0;
   z-index: 4;
   background-color: #dde0f4;
+  display: grid;
 }
 
 #loaderWrap.hidden {
   display: none;
 }
 
+#loader {
+  margin: auto;
+  max-width: 200px;
+}
+
+#loader img {
+  max-width: 120px;
+  display: block;
+  margin: auto;
+}
+
 .lds-ring {
-  display: inline-block;
   position: relative;
-  width: 194px;
-  height: 194px;
-  position: absolute;
-  top: calc(50% + 70px);
-  left: 50%;
-  transform: translate(-50%, calc(-50% - 70px));
+  width: 200px;
+  height: 200px;
+  display: grid;
 }
 
 .lds-ring div {
   box-sizing: border-box;
   display: block;
   position: absolute;
-  width: 181px;
-  height: 181px;
-  margin: 10px;
+  width: 200px;
+  height: 200px;
   border: 10px solid #489be8;
   border-radius: 50%;
   animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
