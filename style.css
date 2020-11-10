@@ -121,12 +121,67 @@ body {
   row-gap: 25px;
 }
 
-.pmContent {
-	padding: 25px;
-	border: 0;
-	border-radius: 0;
+/* loader, thanks loading.io! */
 
+#loaderWrap {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 4;
+  background-color: #dde0f4;
 }
+
+#loaderWrap.hidden {
+  display: none;
+}
+
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 194px;
+  height: 194px;
+  position: absolute;
+  top: calc(50% + 70px);
+  left: 50%;
+  transform: translate(-50%, calc(-50% - 70px));
+}
+
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 181px;
+  height: 181px;
+  margin: 10px;
+  border: 10px solid #489be8;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: var(--darkBlue) transparent transparent transparent;
+}
+
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 
 .chatLine {
   display: grid;

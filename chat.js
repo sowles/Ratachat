@@ -1,6 +1,7 @@
 let firebaseDB;
 const urlParams = new URLSearchParams(window.location.search);
 const chatContainer = document.querySelector(".main__section.main__chat");
+const loaderWrap = document.querySelector("#loaderWrap");
 
 // return user if URL not right
 if (!(urlParams.has("nickname") && urlParams.has("room"))) {
@@ -62,7 +63,10 @@ async function provisionChat() {
         chatLine.appendChild(chatNickname);
       });
       document.documentElement.scrollTop = document.documentElement.scrollHeight;
-    });
+      loaderWrap.classList.add("hidden"); /* so inefficient (runs every time db updates!) and i hate myself for it */
+    })
+    // after first load, remove spinner
+
 }
 
 async function deleteChat() {
