@@ -17,6 +17,12 @@ document.querySelectorAll(".button[data-action='join']").forEach((el) => {
   });
 });
 
+document.querySelectorAll(".button[data-action='goToSplash']").forEach((el) => {
+  el.addEventListener("click", () => {
+    changeMainViews("splash");
+  });
+});
+
 
 function randomCode(min, max) {
   let ranNum = Math.random() * (max - min) + min;
