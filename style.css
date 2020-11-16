@@ -66,7 +66,7 @@ body {
 .main__splash .tagline{
   color: var(--darkBlue);
   grid-area: tagline;
-  font-size: 2.5em
+  font-size: 2.5em;
   text-align: center;
 
 }
