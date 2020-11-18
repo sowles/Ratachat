@@ -30,7 +30,7 @@ async function provisionChat() {
     room = await firebaseDB.collection("rooms").doc(roomCode).get();
   }
   catch(error) {
-    alert(`Fuck! Error: ${error}`);
+    alert(`You need to type stuff in. Error: ${error}`);
   }
 
   if (!room.exists) {
@@ -128,7 +128,7 @@ document.querySelector("#chatForm").addEventListener("submit", sendMessage);
 
 function randomWittyPlaceholder() {
   let options = [
-    "random", "unique", "interesting", "funny", "charming", "about yourself", "hip"
+    "random", "unique", "interesting", "funny", "charming", "about yourself", "hip", "smart", "clever", "new", "wild", "distruptive"
   ]
 
   const randomInt = Math.floor(Math.random() * Math.floor(options.length));;
