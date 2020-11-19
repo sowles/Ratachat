@@ -69,6 +69,13 @@ body {
   max-width: 100%;
 }
 
+.main__splash .tagline{
+  color: var(--darkBlue);
+  grid-area: tagline;
+  font-size: 2.5em;
+  text-align: center;
+
+}
 .main__splash .button--joinRoom {
   grid-area: joinBtn;
 }
@@ -82,7 +89,8 @@ body {
   text-align: center;
   border-radius: var(--borderRadius);
   background: var(--darkBlue);
-  font-size: 1.5em;
+  font-size: 2.2em;
+  color: var(--lightBlue)
 }
 
 .button--outline {
