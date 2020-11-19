@@ -133,18 +133,22 @@ async function copyRoomCode(event) {
   try {
     await navigator.clipboard.writeText(roomCode);
     this.textContent = "done_outline";
-    this.classList.toggle("actionIcon--success")
+    this.classList.toggle("actionIcon--success");
+    this.disabled = true;
     setTimeout(() => {
       this.textContent = "content_copy";
       this.classList.toggle("actionIcon--success");
+      this.disabled = false;
     }, 3000);
   }
   catch(error) {
     this.textContent = "report";
-    this.classList.toggle("actionIcon--danger")
+    this.classList.toggle("actionIcon--danger");
+    this.disabled = true;
     setTimeout(() => {
       this.textContent = "content_copy";
       this.classList.toggle("actionIcon--danger");
+      this.disabled = false;
     }, 3000);
     console.error(`FUCK! Error: ${error}`);
   }
