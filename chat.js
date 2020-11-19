@@ -78,6 +78,12 @@ async function deleteChat() {
   // add spinner
   loaderWrap.classList.remove("hidden");
 
+  let answer = confirm("Are you sure you wish to delete this room and all of its messages?");
+  if (!answer) {
+    loaderWrap.classList.add("hidden");
+    return;
+  }
+
   try {
     await firebaseDB.collection("rooms").doc(roomCode).delete();
   }
@@ -123,7 +129,31 @@ async function sendMessage(event) {
   }
 }
 
-document.querySelector(".button[data-action='deleteChat']").addEventListener("click", deleteChat);
+async function copyRoomCode(event) {
+  try {
+    await navigator.clipboard.writeText(roomCode);
+    this.textContent = "done_outline";
+    this.classList.toggle("actionIcon--success")
+    setTimeout(() => {
+      this.textContent = "content_copy";
+      this.classList.toggle("actionIcon--success");
+    }, 3000);
+  }
+  catch(error) {
+    this.textContent = "report";
+    this.classList.toggle("actionIcon--danger")
+    setTimeout(() => {
+      this.textContent = "content_copy";
+      this.classList.toggle("actionIcon--danger");
+    }, 3000);
+    console.error(`FUCK! Error: ${error}`);
+  }
+}
+
+// why not just say onclick = "X()"?????
+// Don't use querySelectorAll like index bc only one element guaranteed
+document.querySelector("button[data-action='deleteChat']").addEventListener("click", deleteChat); 
+document.querySelector("button[data-action='copyRoomCode']").addEventListener("click", copyRoomCode);
 document.querySelector("#chatForm").addEventListener("submit", sendMessage);
 
 function randomWittyPlaceholder() {

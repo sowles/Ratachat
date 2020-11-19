@@ -29,7 +29,9 @@ h1 {
 
 button {
   -webkit-appearance: none;
+  cursor: pointer;
 }
+
 
 /* start page */
 
@@ -128,6 +130,36 @@ body {
 }
 
 /* chat page */
+
+.chatHeader {
+  max-width: var(--defaultContentWidth);
+  margin: 0 auto;
+  padding: 25px;
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  grid-template-areas: "logo . copy delete";
+  align-items: center;
+  column-gap: 25px;
+}
+
+.chatHeader__logo {
+  grid-area: logo;
+  max-width: 50px;
+}
+
+.actionIcon {
+  color: var(--darkBlue);
+  background: transparent;
+  font-size: 1.8em;
+}
+
+.actionIcon--success {
+  color: #1baf5b;
+}
+
+.actionIcon--danger {
+  color: #f62626;
+}
 
 .main__chat {
   display: grid;

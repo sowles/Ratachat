@@ -2,7 +2,7 @@
 <html lang = "en">
   <head>
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link href="https://fonts.googleapis.com/css2?family=Patua+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Patua+One&family=Material+Icons&display=swap" rel="stylesheet">
     <meta charset="utf-8">
     <title>Rata.chat</title>
     <link rel="stylesheet" href="style.css">
@@ -15,19 +15,27 @@
   </head>
 
   <body>
-  <!-- loader, thanks loading.io! -->
-  <div id = "loaderWrap">
-    <div id = "loader">
-      <div class = "lds-ring"><div></div><div></div><div></div><div></div>
-        <img src = "r.png">  
+    <!-- loader, thanks loading.io! -->
+    <div id = "loaderWrap">
+      <div id = "loader">
+        <div class = "lds-ring"><div></div><div></div><div></div><div></div>
+          <img src = "r.png">  
+        </div>
       </div>
     </div>
-  </div>
+
+    <header class = "chatHeader">
+      <img class = "chatHeader__logo" src = "r.png" title = "Ratachat logo">
+      <button type="button" class="material-icons actionIcon" style = "grid-area: copy" data-action="copyRoomCode" title="Copy room code">
+        content_copy
+      </button>
+
+      <button type="button" class="material-icons actionIcon actionIcon--danger" style = "grid-area: delete" data-action="deleteChat" title = "Delete room and all associated messages">
+        delete
+      </button>
+    </header>
 
     <main class = "main main--relative">
-      <button type="button" class="button" data-action="deleteChat">
-        End Chat
-      </button>
       <section class = "main__section main__chat">
         <!-- Populated by JS -->
       </section>
