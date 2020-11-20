@@ -81,7 +81,7 @@ async function joinRoom(event) {
     alert(`Fuck! Error: ${error}`);
   }
   if (!room.exists) {
-    alert("You moron, that room doesn't exist");
+    alert("That room doesn't exist");
   }
   else if (!nickname) {
     alert("Enter your name man");
