@@ -142,7 +142,7 @@ async function copyRoomCode(event) {
       this.querySelector(".material-icons").textContent = "content_copy";
       this.classList.toggle("actionIcon--success");
       this.disabled = false;
-    }, 3000);
+    }, 2500);
   }
   catch(error) {
     this.querySelector(".material-icons").textContent = "report";
@@ -152,7 +152,7 @@ async function copyRoomCode(event) {
       this.querySelector(".material-icons").textContent = "content_copy";
       this.classList.toggle("actionIcon--danger");
       this.disabled = false;
-    }, 3000);
+    }, 2500);
     console.error(`FUCK! Error: ${error}`);
   }
 }
