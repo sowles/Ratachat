@@ -153,12 +153,27 @@ body {
   font-size: 1.8em;
 }
 
+.actionIcon--hasLabel {
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 8px;
+  align-items: center;
+}
+
+.actionIcon--hasLabel span {
+  color: inherit;
+}
+
 .actionIcon--success {
   color: #1baf5b;
 }
 
 .actionIcon--danger {
   color: #f62626;
+}
+
+#copyRoomCodeButtonText {
+  font-size: 1.2rem;
 }
 
 .main__chat {

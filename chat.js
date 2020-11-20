@@ -36,6 +36,9 @@ async function provisionChat() {
   if (!room.exists) {
     window.location = "index.html";
   }
+
+  document.querySelector("#copyRoomCodeButtonText").textContent = roomCode;
+
   // get all messages in room
   randomWittyPlaceholder();
   let messages;
@@ -132,21 +135,21 @@ async function sendMessage(event) {
 async function copyRoomCode(event) {
   try {
     await navigator.clipboard.writeText(roomCode);
-    this.textContent = "done_outline";
+    this.querySelector(".material-icons").textContent = "done_outline";
     this.classList.toggle("actionIcon--success");
     this.disabled = true;
     setTimeout(() => {
-      this.textContent = "content_copy";
+      this.querySelector(".material-icons").textContent = "content_copy";
       this.classList.toggle("actionIcon--success");
       this.disabled = false;
     }, 3000);
   }
   catch(error) {
-    this.textContent = "report";
+    this.querySelector(".material-icons").textContent = "report";
     this.classList.toggle("actionIcon--danger");
     this.disabled = true;
     setTimeout(() => {
-      this.textContent = "content_copy";
+      this.querySelector(".material-icons").textContent = "content_copy";
       this.classList.toggle("actionIcon--danger");
       this.disabled = false;
     }, 3000);

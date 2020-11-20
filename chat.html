@@ -26,8 +26,9 @@
 
     <header class = "chatHeader">
       <img class = "chatHeader__logo" src = "r.png" title = "Ratachat logo">
-      <button type="button" class="material-icons actionIcon" style = "grid-area: copy" data-action="copyRoomCode" title="Copy room code">
-        content_copy
+      <button type="button" class="material-icons actionIcon actionIcon--hasLabel" style = "grid-area: copy" data-action="copyRoomCode" title="Copy room code">
+        <span id = "copyRoomCodeButtonText"></span>
+        <span class="material-icons">content_copy</span>
       </button>
 
       <button type="button" class="material-icons actionIcon actionIcon--danger" style = "grid-area: delete" data-action="deleteChat" title = "Delete room and all associated messages">
