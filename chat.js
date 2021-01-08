@@ -39,6 +39,30 @@ async function provisionChat() {
 
   document.querySelector("#copyRoomCodeButtonText").textContent = roomCode;
 
+  // add to recent rooms list
+  let recentRoomsList = JSON.parse(localStorage.getItem("recentRoomsList") || "[]");
+
+  if (!recentRoomsList.some(e => e.code == roomCode)) {
+    let roomEntry = {
+      code: roomCode,
+      accessed: new Date()
+    }
+    recentRoomsList.push(roomEntry);
+
+    if (recentRoomsList.length > 5) { // keep recent rooms list short
+      recentRoomsList.shift(); // this is only place new rooms are added, so just blindly shifting *should* be fine 99.999% of the time
+    }
+
+  }
+  else {
+    recentRoomsList.filter(e => e.code == roomCode).acessed = new Date(); // update access timestamp
+  }
+
+  window.localStorage.setItem("recentRoomsList", JSON.stringify(recentRoomsList));
+
+
+
+
   // get all messages in room
   randomWittyPlaceholder();
   let messages;

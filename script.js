@@ -13,6 +13,20 @@ document.querySelectorAll(".button[data-action='create']").forEach((el) => {
 
 document.querySelectorAll(".button[data-action='join']").forEach((el) => {
   el.addEventListener("click", () => {
+    // get recent rooms list
+    let recentRoomsList = JSON.parse(localStorage.getItem("recentRoomsList") || "[]");
+    const recentRoomsContainer = document.querySelector("#main__join__roomList");
+    const codeInput = document.querySelector("#join__enterCode");
+    recentRoomsList.forEach((room) => {
+      const item = document.createElement("button");
+      item.role = "button";
+      item.type = "button";
+      item.textContent = room.code;
+      item.addEventListener("click", () => {
+        codeInput.value = room.code;
+      })
+      recentRoomsContainer.appendChild(item);
+    })
     changeMainViews("join");
   });
 });
