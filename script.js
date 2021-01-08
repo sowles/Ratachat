@@ -14,19 +14,6 @@ document.querySelectorAll(".button[data-action='create']").forEach((el) => {
 document.querySelectorAll(".button[data-action='join']").forEach((el) => {
   el.addEventListener("click", () => {
     // get recent rooms list
-    let recentRoomsList = JSON.parse(localStorage.getItem("recentRoomsList") || "[]");
-    const recentRoomsContainer = document.querySelector("#main__join__roomList");
-    const codeInput = document.querySelector("#join__enterCode");
-    recentRoomsList.forEach((room) => {
-      const item = document.createElement("button");
-      item.role = "button";
-      item.type = "button";
-      item.textContent = room.code;
-      item.addEventListener("click", () => {
-        codeInput.value = room.code;
-      })
-      recentRoomsContainer.appendChild(item);
-    })
     changeMainViews("join");
   });
 });
@@ -58,6 +45,25 @@ firebase.auth().onAuthStateChanged(function(user) {
     });
   }
 });
+
+let recentRoomsList = JSON.parse(localStorage.getItem("recentRoomsList") || "[]");
+if (recentRoomsList.length > 0) {
+  const recentRoomsContainer = document.querySelector(".main__join__roomList");
+  recentRoomsContainer.classList.add("main__join__roomList--visible");
+  const codeInput = document.querySelector("#join__enterCode");
+  recentRoomsList.forEach((room) => {
+    const item = document.createElement("button");
+    item.classList.add("recentRoomItem");
+    item.role = "button";
+    item.type = "button";
+    item.textContent = room.code;
+    item.addEventListener("click", () => {
+      codeInput.value = room.code;
+    })
+    recentRoomsContainer.appendChild(item);
+  })
+}
+
 
 async function createRoom(event) {
   event.preventDefault();

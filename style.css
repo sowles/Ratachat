@@ -129,6 +129,24 @@ body {
   border-radius: var(--borderRadius);
 }
 
+.main__join__roomList {
+  display: none;
+}
+
+.main__join__roomList--visible {
+  display: block;
+}
+
+.recentRoomItem {
+  padding: 4px 15px;
+  border: 2px solid var(--darkBlue);
+  color: var(--darkBlue);
+  background: transparent;
+  border-radius: var(--borderRadius);
+  margin-right: 8px;
+  font-size: 1.15em;
+}
+
 /* chat page */
 
 .chatHeader {
