@@ -100,12 +100,13 @@ async function createRoom(event) {
       content: "Room code: " + roomCode,
       room: roomCode
     });
+    window.location = `chat.html?room=${roomCode}&nickname=${nickname}`;
   }
   catch(error) {
     alert(`Fuck! Error: ${error}`);
+    loaderWrap.classList.add("hidden");
   }
   // move them to chat page, give chat page nickname
-  window.location =`chat.html?room=${roomCode}&nickname=${nickname}`;
 }
 
 async function joinRoom(event) {
@@ -116,18 +117,21 @@ async function joinRoom(event) {
   let room;
   try {
     room = await firebaseDB.collection("rooms").doc(roomCode).get();
+    if (!room.exists) {
+      alert("That room doesn't exist");
+      loaderWrap.classList.add("hidden");
+    }
+    else if (!nickname) {
+      alert("Enter your name man");
+      loaderWrap.classList.add("hidden");
+    }
+    else {
+      window.location = `chat.html?room=${roomCode}&nickname=${nickname}`;
+    }
   }
   catch(error) {
     alert(`Fuck! Error: ${error}`);
-  }
-  if (!room.exists) {
-    alert("That room doesn't exist");
-  }
-  else if (!nickname) {
-    alert("Enter your name man");
-  }
-  else {
-    window.location =`chat.html?room=${roomCode}&nickname=${nickname}`;
+    loaderWrap.classList.add("hidden");
   }
 
 }
