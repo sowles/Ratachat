@@ -36,6 +36,7 @@ firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     firebaseDB = firebase.firestore();
     user = user.uid;
+    loadRecentRooms();
   }
   else {
     firebase.auth().signInAnonymously().catch(function(error) {
@@ -46,24 +47,43 @@ firebase.auth().onAuthStateChanged(function(user) {
   }
 });
 
-let recentRoomsList = JSON.parse(localStorage.getItem("recentRoomsList") || "[]");
-if (recentRoomsList.length > 0) {
+async function loadRecentRooms() {
+  let recentRoomsList = JSON.parse(localStorage.getItem("recentRoomsList") || "[]");
   const recentRoomsContainer = document.querySelector(".main__join__roomList");
-  recentRoomsContainer.classList.add("main__join__roomList--visible");
   const codeInput = document.querySelector("#join__enterCode");
-  recentRoomsList.forEach((room) => {
-    const item = document.createElement("button");
-    item.classList.add("recentRoomItem");
-    item.role = "button";
-    item.type = "button";
-    item.textContent = room.code;
-    item.addEventListener("click", () => {
-      codeInput.value = room.code;
-    })
-    recentRoomsContainer.appendChild(item);
-  })
-}
+  for (let i = 0; i < recentRoomsList.length; i++) {
+    // make sure room still exists, then add to list, if not remove from array
+    let room = recentRoomsList[i];
+    let roomDoc;
+    try {
+      roomDoc = await firebaseDB.collection("rooms").doc(room.code).get();
+    }
+    catch (error) {
+      alert(`Fuck! Error: ${error}`);
+    }
+    if (roomDoc.exists) {
+      const item = document.createElement("button");
+      item.classList.add("recentRoomItem");
+      item.role = "button";
+      item.type = "button";
+      item.textContent = room.code;
+      item.addEventListener("click", () => {
+        codeInput.value = room.code;
+      })
+      recentRoomsContainer.appendChild(item);
+    }
+    else {
+      recentRoomsList.splice(i);
+    }
+    // if still some non-deleted rooms in list, show section
+    if (recentRoomsList.length > 0) {
+      recentRoomsContainer.classList.add("main__join__roomList--visible");
+    }
 
+    // save new array
+    window.localStorage.setItem("recentRoomsList", JSON.stringify(recentRoomsList));
+  }
+}
 
 async function createRoom(event) {
   event.preventDefault();
