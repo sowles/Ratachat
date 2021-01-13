@@ -51,7 +51,7 @@ async function loadRecentRooms() {
   let recentRoomsList = JSON.parse(localStorage.getItem("recentRoomsList") || "[]");
   const recentRoomsContainer = document.querySelector(".main__join__roomList");
   const codeInput = document.querySelector("#join__enterCode");
-  for (let i = 0; i < recentRoomsList.length; i++) {
+  for (let i = 0; i < recentRoomsList.length; i++) { // backwards order so most recent is shown first
     // make sure room still exists, then add to visible list, if not remove from array
     let room = recentRoomsList[i];
     let roomDoc;

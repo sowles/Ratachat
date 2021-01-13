@@ -58,6 +58,11 @@ async function provisionChat() {
     recentRoomsList.filter(e => e.code == roomCode).acessed = new Date(); // update access timestamp
   }
 
+  // sort array
+  recentRoomsList.sort((a, b) => {
+    return a - b;
+  });
+
   window.localStorage.setItem("recentRoomsList", JSON.stringify(recentRoomsList));
 
 
