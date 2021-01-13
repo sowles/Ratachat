@@ -52,7 +52,7 @@ async function loadRecentRooms() {
   const recentRoomsContainer = document.querySelector(".main__join__roomList");
   const codeInput = document.querySelector("#join__enterCode");
   for (let i = 0; i < recentRoomsList.length; i++) { // most recent is shown first
-    // make sure room still exists, then add to visible list, if not remove from array
+    // make sure room still exists, if not remove from array
     let room = recentRoomsList[i];
     let roomDoc;
     try {
@@ -61,27 +61,32 @@ async function loadRecentRooms() {
     catch (error) {
       alert(`Fuck! Error: ${error}`);
     }
-    if (roomDoc.exists) {
-      const item = document.createElement("button");
-      item.classList.add("recentRoomItem");
-      item.role = "button";
-      item.type = "button";
-      item.textContent = room.code;
-      item.addEventListener("click", () => {
-        codeInput.value = room.code;
-      })
-      recentRoomsContainer.appendChild(item);
-    }
-    else {
+    if (!roomDoc.exists) {
       recentRoomsList.splice(i, 1);
     }
-    // if still some non-deleted rooms in list, show section
-    if (recentRoomsList.length > 0) {
-      recentRoomsContainer.classList.add("main__join__roomList--visible");
-    }
+  }
+  // if still some non-deleted rooms in list, show section
+  if (recentRoomsList.length > 0) {
+    recentRoomsContainer.classList.add("main__join__roomList--visible");
+  }
 
-    // save new array
-    window.localStorage.setItem("recentRoomsList", JSON.stringify(recentRoomsList));
+  // save new array
+  window.localStorage.setItem("recentRoomsList", JSON.stringify(recentRoomsList));
+
+
+  for (let i = 0; i < recentRoomsList.length; i++) {
+    // use new array to actually show recent rooms. 
+    // this implementation is not ideal BUT max length of array is 5, so performance hit is negligable, plus big O is linear anyway.
+    const item = document.createElement("button");
+    item.classList.add("recentRoomItem");
+    item.role = "button";
+    item.type = "button";
+    item.textContent = room.code;
+    item.addEventListener("click", () => {
+      codeInput.value = room.code;
+    })
+    recentRoomsContainer.appendChild(item);
+
   }
 }
 
