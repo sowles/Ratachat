@@ -48,11 +48,6 @@ async function provisionChat() {
       accessed: Date.now()
     }
     recentRoomsList.push(roomEntry);
-
-    if (recentRoomsList.length > 5) { // keep recent rooms list short
-      recentRoomsList.pop(); // this is only place new rooms are added, so just blindly popping last item *should* be fine 99.999% of the time
-    }
-
   }
   else {
     recentRoomsList.filter(e => e.code == roomCode)[0].accessed = Date.now(); // update access timestamp
@@ -62,6 +57,10 @@ async function provisionChat() {
   recentRoomsList.sort((a, b) => {
     return b.accessed - a.accessed;
   });
+
+  if (recentRoomsList.length > 5) { // keep recent rooms list short, this removes last accessed room in array since it was just sorted
+    recentRoomsList.pop(); // this is only place new rooms are added, so just blindly popping last item *should* be fine 99.999% of the time
+  }
 
   window.localStorage.setItem("recentRoomsList", JSON.stringify(recentRoomsList));
 
