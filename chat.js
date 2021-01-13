@@ -50,7 +50,7 @@ async function provisionChat() {
     recentRoomsList.push(roomEntry);
 
     if (recentRoomsList.length > 5) { // keep recent rooms list short
-      recentRoomsList.shift(); // this is only place new rooms are added, so just blindly shifting *should* be fine 99.999% of the time
+      recentRoomsList.pop(); // this is only place new rooms are added, so just blindly popping last item *should* be fine 99.999% of the time
     }
 
   }
