@@ -73,7 +73,7 @@ async function loadRecentRooms() {
       recentRoomsContainer.appendChild(item);
     }
     else {
-      recentRoomsList.splice(i);
+      recentRoomsList.splice(i, 1);
     }
     // if still some non-deleted rooms in list, show section
     if (recentRoomsList.length > 0) {
