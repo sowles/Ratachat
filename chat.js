@@ -45,7 +45,7 @@ async function provisionChat() {
   if (!recentRoomsList.some(e => e.code == roomCode)) {
     let roomEntry = {
       code: roomCode,
-      accessed: new Date()
+      accessed: Date.now()
     }
     recentRoomsList.push(roomEntry);
 
@@ -55,12 +55,12 @@ async function provisionChat() {
 
   }
   else {
-    recentRoomsList.filter(e => e.code == roomCode).acessed = new Date(); // update access timestamp
+    recentRoomsList.filter(e => e.code == roomCode)[0].accessed = Date.now(); // update access timestamp
   }
 
   // sort array
   recentRoomsList.sort((a, b) => {
-    return a - b;
+    return b.accessed - a.accessed;
   });
 
   window.localStorage.setItem("recentRoomsList", JSON.stringify(recentRoomsList));
