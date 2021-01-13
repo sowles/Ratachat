@@ -77,6 +77,8 @@ async function loadRecentRooms() {
   for (let i = 0; i < recentRoomsList.length; i++) {
     // use new array to actually show recent rooms. 
     // this implementation is not ideal BUT max length of array is 5, so performance hit is negligable, plus big O is linear anyway.
+    let room = recentRoomsList[i];
+
     const item = document.createElement("button");
     item.classList.add("recentRoomItem");
     item.role = "button";
