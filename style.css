@@ -137,6 +137,26 @@ body {
   display: block;
 }
 
+.main__join__roomList__loader {
+  display: none;
+}
+
+.main__join__roomList__loader--visible {
+  display: block;
+}
+
+.loadingRingSmall {
+  width: 40px !important;
+  height: 40px !important;
+  position: static !important;
+}
+
+.loadingRingSmall div {
+  width: 40px !important;
+  height: 40px !important;
+  border-width: 4px !important;
+}
+
 .recentRoomItem {
   padding: 4px 15px;
   border: 2px solid var(--darkBlue);

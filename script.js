@@ -50,6 +50,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 async function loadRecentRooms() {
   let recentRoomsList = JSON.parse(localStorage.getItem("recentRoomsList") || "[]");
   const recentRoomsContainer = document.querySelector(".main__join__roomList");
+  const recentRoomsLoader = document.querySelector(".main__join__roomList__loader");
   const codeInput = document.querySelector("#join__enterCode");
   for (let i = 0; i < recentRoomsList.length; i++) { // most recent is shown first
     // make sure room still exists, if not remove from array
@@ -69,6 +70,8 @@ async function loadRecentRooms() {
   if (recentRoomsList.length > 0) {
     recentRoomsContainer.classList.add("main__join__roomList--visible");
   }
+
+  recentRoomsLoader.classList.remove("main__join__roomList__loader--visible");
 
   // save new array
   window.localStorage.setItem("recentRoomsList", JSON.stringify(recentRoomsList));
