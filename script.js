@@ -66,13 +66,6 @@ async function loadRecentRooms() {
       recentRoomsList.splice(i, 1);
     }
   }
-  // if still some non-deleted rooms in list, show section
-  if (recentRoomsList.length > 0) {
-    recentRoomsContainer.classList.add("main__join__roomList--visible");
-  }
-
-  recentRoomsLoader.classList.remove("main__join__roomList__loader--visible");
-
   // save new array
   window.localStorage.setItem("recentRoomsList", JSON.stringify(recentRoomsList));
 
@@ -93,6 +86,14 @@ async function loadRecentRooms() {
     recentRoomsContainer.appendChild(item);
 
   }
+
+  recentRoomsLoader.classList.remove("main__join__roomList__loader--visible");
+
+  // if still some non-deleted rooms in list, show section
+  if (recentRoomsList.length > 0) {
+    recentRoomsContainer.classList.add("main__join__roomList--visible");
+  }
+
 }
 
 async function createRoom(event) {
