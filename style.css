@@ -309,7 +309,7 @@ body {
 	padding: 8px 15px;
   word-wrap: break-word;
   text-align: left;
-
+  word-break: break-word;
 }
 
 .chatLine--you > .chatBubble {
