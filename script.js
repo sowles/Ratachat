@@ -37,6 +37,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     firebaseDB = firebase.firestore();
     user = user.uid;
     loadRecentRooms();
+    loadMostRecentNickname();
   }
   else {
     firebase.auth().signInAnonymously().catch(function(error) {
@@ -96,6 +97,12 @@ async function loadRecentRooms() {
 
 }
 
+function loadMostRecentNickname() {
+  document.querySelectorAll(".nicknameInput").forEach((el) => {
+    el.value = window.localStorage.getItem("mostRecentNickname");
+  });
+}
+
 async function createRoom(event) {
   event.preventDefault();
   loaderWrap.classList.remove("hidden");
@@ -111,6 +118,7 @@ async function createRoom(event) {
       content: "Room code: " + roomCode,
       room: roomCode
     });
+    window.localStorage.setItem("mostRecentNickname", nickname);
     window.location = `chat.html?room=${roomCode}&nickname=${nickname}`;
   }
   catch(error) {
@@ -137,6 +145,7 @@ async function joinRoom(event) {
       loaderWrap.classList.add("hidden");
     }
     else {
+      window.localStorage.setItem("mostRecentNickname", nickname);
       window.location = `chat.html?room=${roomCode}&nickname=${nickname}`;
     }
   }
