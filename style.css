@@ -392,3 +392,30 @@ footer {
     grid-template-areas: ". logo text .";
   }
 }
+
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --textColor: rgba(255, 255, 255, 0.8);
+    --darkBlue: #617bcc;
+  }
+  body {
+    background: #142538;
+  }
+  .chatLine--other > .chatBubble {
+    background: #3c4043;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .actionIcon--danger {
+    color: #952a2f;
+  }
+
+  .editText {
+    background: #223244;
+  }
+
+  #loaderWrap {
+    background: #142538;
+  }
+}
