@@ -119,7 +119,7 @@ async function deleteChat() {
     await firebaseDB.collection("rooms").doc(roomCode).delete();
   }
   catch(error) {
-    console.error("Fuck! Error: ", error);
+    console.error("Error: ", error);
   }
   try {
     var batch = firebaseDB.batch();
@@ -131,7 +131,7 @@ async function deleteChat() {
   }
 
   catch(error) {
-    console.error(`Fuck: ${error}`);
+    console.error(`Error: ${error}`);
   }
 
   finally {
@@ -156,7 +156,7 @@ async function sendMessage(event) {
     });
   }
   catch(error) {
-    console.error("Fuck! Error: ", error);
+    console.error("Error: ", error);
   }
 }
 
@@ -181,7 +181,7 @@ async function copyRoomCode(event) {
       this.classList.toggle("actionIcon--danger");
       this.disabled = false;
     }, 2500);
-    console.error(`FUCK! Error: ${error}`);
+    console.error(`Error: ${error}`);
   }
 }
 
