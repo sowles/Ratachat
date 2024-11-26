@@ -43,7 +43,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     firebase.auth().signInAnonymously().catch(function(error) {
       var errorCode = error.code;
       var errorMessage = error.message;
-      console.log("FUCK!!");
+      console.log("Error!");
     });
   }
 });
@@ -61,7 +61,7 @@ async function loadRecentRooms() {
       roomDoc = await firebaseDB.collection("rooms").doc(room.code).get();
     }
     catch (error) {
-      alert(`Fuck! Error: ${error}`);
+      alert(`Error: ${error}`);
     }
     if (!roomDoc.exists) {
       recentRoomsList.splice(i, 1);
@@ -122,7 +122,7 @@ async function createRoom(event) {
     window.location = `chat.html?room=${roomCode}&nickname=${nickname}`;
   }
   catch(error) {
-    alert(`Fuck! Error: ${error}`);
+    alert(`Error: ${error}`);
     loaderWrap.classList.add("hidden");
   }
   // move them to chat page, give chat page nickname
@@ -150,7 +150,7 @@ async function joinRoom(event) {
     }
   }
   catch(error) {
-    alert(`Fuck! Error: ${error}`);
+    alert(`Error: ${error}`);
     loaderWrap.classList.add("hidden");
   }
 
